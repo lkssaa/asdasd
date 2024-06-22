@@ -1,0 +1,17 @@
+{
+  "name": "res",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "i": "^0.3.7",
+    "mysql2": "^3.10.1"
+  }
+}
