@@ -39,7 +39,25 @@ app.get('/', function(req, res) {
       }
     });
   });
-
+app.get('/edit', function(req, res){
+    connection.query(`
+        UPDATE project.contents SET text_content = '${req.query.text}' WHERE languageID = '${req.query.language}' AND partitID = ${req.query.id};
+        `,(err, results, fields) => {
+            console.log(results);
+        });
+})
+app.get('/add', function(req, res) {
+    connection.query(`
+        INSERT partit(partit_id, partit_name, languageId) VALUES ((SELECT MAX(partit_id) FROM partit)+1, '${req.query.name}', '${req.query.language}');
+        `,(err, results, fields) => {
+            console.log(results);
+        });
+    connection.query(`
+        INSERT contents(partitID, subjectID, languageID, text_content, pictures) VALUES ((SELECT MAX(partit_id) FROM partit),1, '${req.query.language}', ' ', NULL);
+        `,(err, results, fields) => {
+            console.log(results);
+        });
+})
 app.listen(9898, (err) => {
   if (err){
       return console.log(err)
